@@ -1,0 +1,69 @@
+{
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "display": "Next.js",
+  "compilerOptions": {
+    "allowJs": true,
+    "checkJs": false,
+    "composite": false,
+    "declaration": true,
+    "declarationMap": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "incremental": true,
+    "inlineSources": false,
+    "isolatedModules": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
+    "preserveWatchOutput": true,
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "allowSyntheticDefaultImports": true,
+    "typeRoots": [
+      "node_modules/@types"
+    ],
+    "jsx": "preserve",
+    "target": "es5",
+    "downlevelIteration": true,
+    "importHelpers": true,
+    "lib": [
+      "ES2021",
+      "DOM",
+      "DOM.Iterable",
+      "es5",
+      "es2015.collection",
+      "es2015.iterable"
+    ],
+    "noEmit": true,
+    "baseUrl": "src",
+    "paths": {
+      "@/*": [
+        "*"
+      ],
+      "nextjs-effector": [
+        "./shared/lib/nextjs-effector"
+      ],
+      "nextjs-effector/*": [
+        "./shared/lib/nextjs-effector/*"
+      ]
+    }
+  },
+  "include": [
+    "custom-next-env.d.ts",
+    "./src/**/*",
+    "./pages/**/*",
+    // "**/*.ts",
+    // "**/*.tsx",
+    "*.js",
+    ".eslintrc.js",
+    "next.config.js"
+  ],
+  "exclude": [
+    "node_modules",
+    ".next",
+    ".turbo",
+    "next-env.d.ts"
+  ]
+}
