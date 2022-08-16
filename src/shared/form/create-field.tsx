@@ -1,5 +1,5 @@
 import type { ComponentType } from 'react';
-import type { Controller } from 'effector-react-form/scope';
+import type { Controller } from 'effector-react-form';
 
 export function createField<P, Keys extends string = ''>(Component: ComponentType<P>) {
   // eslint-disable-next-line func-names

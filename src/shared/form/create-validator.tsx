@@ -1,5 +1,5 @@
-import type { FormValidateParams } from 'effector-react-form/scope';
-import { createNameHelper } from 'effector-react-form/scope';
+import type { FormValidateParams } from 'effector-react-form';
+import { createNameHelper } from 'effector-react-form';
 import type { AnyObjectSchema, ValidationError } from 'yup';
 
 export const createValidator = (schema: AnyObjectSchema) => {

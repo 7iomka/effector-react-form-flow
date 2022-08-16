@@ -9,8 +9,8 @@ import {
   sample
 } from "effector";
 import { object, string } from "yup";
-import type { SubmitParams, ErrorsInline } from "effector-react-form/scope";
-import { createForm } from "effector-react-form/scope";
+import type { SubmitParams, ErrorsInline } from "effector-react-form";
+import { createForm } from "effector-react-form";
 import { pending } from "patronum/pending";
 import { reset } from "patronum/reset";
 import { interval } from "patronum/interval";

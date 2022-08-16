@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-shadow */
 import clsx from 'clsx';
 import { Anchor, Button, Loader } from '@mantine/core';
-import { useForm } from 'effector-react-form/scope';
+import { useForm } from 'effector-react-form';
 import { createView } from '@/shared/lib/view';
 import { Field, Form } from '@/shared/form';
 import type { FormPhoneConfirmDto, FormPhoneDto } from '../../register.model';

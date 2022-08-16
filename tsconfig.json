@@ -47,6 +47,12 @@
       ],
       "nextjs-effector/*": [
         "./shared/lib/nextjs-effector/*"
+      ],
+      "effector-react-form": [
+        "./shared/lib/effector-react-form"
+      ],
+      "effector-react-form/*": [
+        "./shared/lib/effector-react-form/*"
       ]
     }
   },

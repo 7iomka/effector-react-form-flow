@@ -1,7 +1,7 @@
 /* eslint-disable func-names */
 import type { Store } from 'effector';
 import { combine } from 'effector';
-import { useStore } from 'effector-react';
+import { useStore } from 'effector-react/scope';
 import type { ComponentType } from 'react';
 import React from 'react';
 
