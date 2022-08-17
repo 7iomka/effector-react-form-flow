@@ -8,7 +8,9 @@ module.exports = (api) => {
       {
         factories: [
           "patronum",
-          "effector-react-form",
+          'effector-react-form',
+          './src/shared/lib/effector-react-form',
+          '@/shared/lib/effector-react-form',
           "effector-http-api",
           "effector-view"
         ],
