@@ -76,13 +76,13 @@ const createForm = <Values extends object = any, Meta = any>({
   const onSubmit = createEvent<SubmitParams<Values, Meta>>(`Form_${name}_OnSubmit`);
   const onChange = createEvent<SubmitParams<Values, Meta>>(`Form_${name}_OnChange`);
 
-  const $values = createStore<Values>(initialValues || ({} as Values), { name: `Form_${name}_$values` });
-  const $errorsInline = createStore<ErrorsInline>({}, { name: `Form_${name}_$errorsInline` });
-  const $outerErrorsInline = createStore<ErrorsInline>({}, { name: `Form_${name}_$outerErrorsInline` });
-  const $fieldsInline = createStore<FieldsInline>({}, { name: `Form_${name}_$fieldsInline` });
-  const $fieldsInlineInitData = createStore({}, { name: `Form_${name}_$fieldsInlineInitData` });
-  const $form = createStore<FormState>(initialFormState, { name: `Form_${name}_$form` });
-  const $meta = createStore<Meta>(initialMeta, { name: `Form_${name}_$meta` });
+  const $values = createStore<Values>(initialValues || ({} as Values), { name: `Form_${name}_$values`, serialize: 'ignore' });
+  const $errorsInline = createStore<ErrorsInline>({}, { name: `Form_${name}_$errorsInline`, serialize: 'ignore' });
+  const $outerErrorsInline = createStore<ErrorsInline>({}, { name: `Form_${name}_$outerErrorsInline`, serialize: 'ignore' });
+  const $fieldsInline = createStore<FieldsInline>({}, { name: `Form_${name}_$fieldsInline`, serialize: 'ignore' });
+  const $fieldsInlineInitData = createStore({}, { name: `Form_${name}_$fieldsInlineInitData`, serialize: 'ignore' });
+  const $form = createStore<FormState>(initialFormState, { name: `Form_${name}_$form`, serialize: 'ignore' });
+  const $meta = createStore<Meta>(initialMeta, { name: `Form_${name}_$meta`, serialize: 'ignore' });
 
   const $allFormState = combine({
     values: $values,
