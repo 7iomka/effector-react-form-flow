@@ -3,7 +3,7 @@ import { $$registerPage, Register } from "@/pages/public/auth/register";
 import Link from "next/link";
 
 const CustomWrapper = () => (
-  <div><Link href="/index2">Form 2</Link><Register /></div>
+  <div><Link href="/">Form1</Link><Register /></div>
 )
 
 const { Page, getStaticProps } = baseLayout.createNextPage(CustomWrapper, {
