@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { createEvent as createEventNative, sample } from 'effector';
 import { CreateFieldArrayParams, FieldArray } from '../ts';
 import { getIn, removeFromInlineMap, setIn } from '../utils/object-manager';

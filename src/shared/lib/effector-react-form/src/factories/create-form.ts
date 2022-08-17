@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 import {
   combine,
   createEvent as createEventNative,

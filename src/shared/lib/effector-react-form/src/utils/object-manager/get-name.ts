@@ -63,4 +63,5 @@ type GetName<Obj> = {
 
 const getName = (...keys: any): any => keys;
 
-export { getName, GetName };
+export type { GetName };
+export { getName };

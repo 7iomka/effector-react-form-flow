@@ -1,3 +1,4 @@
+// @ts-nocheck
 const isEvent = (candidate) => !!(candidate && candidate.stopPropagation && candidate.preventDefault);
 
 const getSelectedValues = (options) => {

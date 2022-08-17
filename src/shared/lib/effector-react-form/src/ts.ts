@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { Store, Event, Domain } from 'effector';
 import React from 'react';
 import { GetName, GetNameStr } from './utils/object-manager';
