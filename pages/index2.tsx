@@ -1,13 +1,14 @@
 import { baseLayout } from "@/app/page-factories";
-import { $$registerPage, Register } from "@/pages/public/auth/register";
+import { $$register2Page, Register2 } from "@/pages/public/auth/register2";
+import { Text } from "@mantine/core";
 import Link from "next/link";
 
 const CustomWrapper = () => (
-  <div><Link href="/">Form1</Link><Register /></div>
+  <Text mb={15} className="text-center"><Link href="/" ><a style={{ textDecoration: 'underline' }}>Form </a></Link><Register2 /></Text>
 )
 
 const { Page, getStaticProps } = baseLayout.createNextPage(CustomWrapper, {
-  gspPageEvent: $$registerPage.enter
+  gspPageEvent: $$register2Page.enter
 });
 
 export { getStaticProps };
