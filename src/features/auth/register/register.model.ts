@@ -179,6 +179,7 @@ const checkPhoneNumberFx = createEffect<SubmitParams<FormPhoneDto>, void, Error 
 });
 
 export const formPhone = createForm<FormPhoneDto>({
+  name:'phoneForm',
   initialValues: {
     phoneNumber: '',
     confirmationMode: 'telegram',
@@ -206,7 +207,6 @@ const sendConfirmationCodeFx = attach({
   source: formPhone.$values,
   async effect(source, params) {
     await sleep();
-    console.log('sendConfirmationCodeFx', source, params);
   },
 });
 
@@ -355,7 +355,6 @@ export const registerFx = attach({
   source: $registerValues,
   async effect(source, params) {
     await new Promise((res) => setTimeout(res, 3000));
-    console.log('Form submitted', source, params);
   },
 });
 
@@ -395,4 +394,4 @@ export const $dateStore = createStore('');
 //   target: $dateStore
 // })
 
-debug($dateStore)
+// debug($dateStore)

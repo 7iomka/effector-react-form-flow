@@ -1,4 +1,4 @@
-import { fork, serialize } from 'effector';
+import {fork, Scope, serialize} from 'effector';
 import { NextComponentType } from 'next';
 import { AppContext, AppProps } from 'next/app';
 import React, { useRef } from 'react';
@@ -13,6 +13,8 @@ import { state } from './state';
 
 // tests
 import { $isConfirmationCodeEnabled } from '../../../features/auth/register/register.model';
+import {debug} from "patronum";
+import {$scopeName} from "@/features/auth/register";
 
 interface Values {
   [sid: string]: any;
@@ -66,14 +68,25 @@ export function withEffector(
   return function EnhancedApp(props: AppProps) {
     const { [INITIAL_STATE_KEY]: initialState, ...pageProps } = props.pageProps;
 
+
     const scope = useScope(initialState);
+
+    if(prevScope){
+
+      console.log({currentScopeName: scope.getState($scopeName),prevScopeName: prevScope.getState($scopeName),isEqual: prevScope === scope})
+    }
+    if(!prevScope){
+      prevScope = scope
+    }
+    console.log('renderApp')
+
     //tests
-    console.log($isConfirmationCodeEnabled);
-    console.log(initialState, scope.getState($isConfirmationCodeEnabled));
     return (
-      <EffectorReact.Provider value={scope}>
+      <EffectorReact.Provider value={{...scope}} >
         <App {...props} pageProps={pageProps} />
       </EffectorReact.Provider>
     );
   };
 }
+
+let prevScope: Scope | undefined

@@ -56,7 +56,6 @@ const WrappedApp = ({ Component, pageProps }: AppPropsWithLayout) => {
     const match = router.asPath.match(pathnameRegex);
     const pathname = match ? match[0] : router.asPath;
 
-    console.log({ routerPathNameWithQuery: router.pathname, pathname, match });
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);

@@ -205,7 +205,6 @@ const sendConfirmationCodeFx = attach({
   source: formPhone.$values,
   async effect(source, params) {
     await sleep();
-    console.log('sendConfirmationCodeFx', source, params);
   },
 });
 
@@ -354,7 +353,6 @@ export const registerFx = attach({
   source: $registerValues,
   async effect(source, params) {
     await new Promise((res) => setTimeout(res, 3000));
-    console.log('Form submitted', source, params);
   },
 });
 

@@ -11,5 +11,4 @@ export const enter = createEvent<StaticPageContext>();
 //   target: [$$register.allResetted], 
 // });
 
-enter.watch((v) => console.log('enter v1'));
 // $$register.allResetted.watch((v) => console.log('allresetted v1'));

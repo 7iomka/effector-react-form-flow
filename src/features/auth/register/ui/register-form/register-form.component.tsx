@@ -27,24 +27,41 @@ import {
 } from '../../register.model';
 import styles from './register-form.module.scss';
 import { useEffect } from 'react';
+import {useScope} from "nextjs-effector/with-effector";
+import {debug} from "patronum";
+import {useUnit} from "effector-react/scope";
+import {combine, createStore} from "effector";
 
 interface RegisterFormProps {
   className?: string;
 }
+
+const $scopeName = createStore('unknown')
+
+debug($scopeName)
+debug(combine({phoneNumber:formPhone.$values.map(({phoneNumber}) =>phoneNumber ),scopeName: $scopeName}))
+
 const FormPhone = createView()
   .units({
+      $scopeName,
+      phoneNumber:formPhone.$values.map((values) => values.phoneNumber),
     isLoading: $formPhonePending,
     isPhoneNumberEditable: $isPhoneNumberEditable,
     handleEditPhoneNumber: editPhoneNumberClicked,
     confirmationModes: $confirmationModes,
   })
-  .map(() => {
+  .map(({phoneNumber,$scopeName}) => {
     const { controller, handleSubmit } = useForm<FormPhoneDto>({
       form: formPhone,
       resetUnmount: false,
+        log:true
     });
 
-    return {
+      // console.log({useUnit:useUnit(formPhone.$values)
+  // ,phoneNumber,$scopeName})
+
+
+      return {
       form: formPhone,
       controller,
       handleSubmit,
@@ -59,65 +76,88 @@ const FormPhone = createView()
       isPhoneNumberEditable,
       handleEditPhoneNumber,
       confirmationModes,
-    }) => (
-      <Form onSubmit={handleSubmit}>
-        <Field.TextInput
-          use={controller({
-            name: form.getName('phoneNumber'),
-          })}
-          label="Номер телефона"
-          disabled={!isPhoneNumberEditable}
-        />
-        {!isPhoneNumberEditable && (
-          <Anchor
-            component="button"
-            type="button"
-            color="dark"
-            size="sm"
-            underline
-            className="opacity-70 hover:opacity-100 mt-5"
-            onClick={handleEditPhoneNumber}
-          >
-            Изменить номер телефона
-          </Anchor>
-        )}
+    }) => {
 
-        {isPhoneNumberEditable && (
-          <>
-            <Field.RadioGroup
-              className="mt-15"
-              spacing={0}
-              offset={0}
-              use={controller({
-                name: form.getName('confirmationMode'),
-              })}
-            >
-              {confirmationModes.map((mode, idx, arr) => (
-                <Radio
-                  value={mode.value}
-                  label={mode.label}
-                  key={mode.value}
-                  mr={arr.length - 1 > idx ? 8 : 0}
-                  sx={{
-                    flexGrow: 1,
-                  }}
+    //     console.log({
+    //         value:controller({
+    //                        name: form.getName('phoneNumber'),
+    // })()
+    // });
+    //
+    //     const _use = controller({
+    //         name: form.getName('phoneNumber'),
+    //     })();
+    //
+    //     const original = _use.input.onChange
+    //
+    //     _use.input.onChange = (...args:any[]) => {
+    //         console.log({args});
+    //         // @ts-ignore
+    //         original(...args);
+    //     }
+    //
+    //     const use = () => _use
+
+        return (
+            <Form onSubmit={handleSubmit}>
+                <Field.TextInput
+                    use={controller({
+                                name: form.getName('phoneNumber'),
+                            })}
+                    label="Номер телефона"
+                    disabled={!isPhoneNumberEditable}
                 />
-              ))}
-            </Field.RadioGroup>
-            <Button
-              color="gray.4"
-              radius="md"
-              fullWidth
-              className="mt-15"
-              disabled={isLoading}
-              type="submit"
-            >
-              {isLoading ? <Loader variant="dots" color="dark" /> : 'Получить код'}
-            </Button>
-          </>
-        )}
-      </Form>
-    ),
+                {!isPhoneNumberEditable && (
+                    <Anchor
+                        component="button"
+                        type="button"
+                        color="dark"
+                        size="sm"
+                        underline
+                        className="opacity-70 hover:opacity-100 mt-5"
+                        onClick={handleEditPhoneNumber}
+                    >
+                        Изменить номер телефона
+                    </Anchor>
+                )}
+
+                {isPhoneNumberEditable && (
+                    <>
+                        <Field.RadioGroup
+                            className="mt-15"
+                            spacing={0}
+                            offset={0}
+                            use={controller({
+                                name: form.getName('confirmationMode'),
+                            })}
+                        >
+                            {confirmationModes.map((mode, idx, arr) => (
+                                <Radio
+                                    value={mode.value}
+                                    label={mode.label}
+                                    key={mode.value}
+                                    mr={arr.length - 1 > idx ? 8 : 0}
+                                    sx={{
+                                        flexGrow: 1,
+                                    }}
+                                />
+                            ))}
+                        </Field.RadioGroup>
+                        <Button
+                            color="gray.4"
+                            radius="md"
+                            fullWidth
+                            className="mt-15"
+                            disabled={isLoading}
+                            type="submit"
+                        >
+                            {isLoading ? <Loader variant="dots" color="dark" /> : 'Получить код'}
+                        </Button>
+                    </>
+                )}
+            </Form>
+        )
+    },
   );
 
 const FormPhoneConfirm = createView<{ className?: string }>()
@@ -211,38 +251,26 @@ const RegisterForm = createView<RegisterFormProps>()
     dateStore: $dateStore,
   })
   .effect(({ isConfirmationCodeEnabled}) => {
-    useEffect(() => {
-      console.log('mounted'); 
-      return () => {
-        console.log('unmounted');
-      }
-    }, [])
-    console.log('isConfirmationCodeEnabled in component', isConfirmationCodeEnabled);
-    // reset all
-    // useEffect(
-    //   () => () => {
-    //     allResetted();
-    //   },
-    //   [allResetted],
-    // );
   })
   .memo()
   .view(
-    ({ className, isLoading, handleSubmit, isConfirmationCodeEnabled, isPhoneNumberConfirmed }) => (
-      <section className={clsx(styles.RegisterForm, className)}>
-        {!isPhoneNumberConfirmed && <FormPhone />}
-        {isConfirmationCodeEnabled && <FormPhoneConfirm className="mt-15" />}
-        <Button
-          className="mt-30"
-          fullWidth
-          onClick={() => handleSubmit()}
-          disabled={!isPhoneNumberConfirmed}
-        >
-          {isLoading ? <Loader variant="dots" color="dark" /> : 'Зарегистрироваться'}
-        </Button>
-      </section>
-    ),
+    ({ className, isLoading, handleSubmit, isConfirmationCodeEnabled, isPhoneNumberConfirmed }) => {
+        return (
+            <section className={clsx(styles.RegisterForm, className)}>
+                {!isPhoneNumberConfirmed && <FormPhone />}
+                {isConfirmationCodeEnabled && <FormPhoneConfirm className="mt-15" />}
+                <Button
+                    className="mt-30"
+                    fullWidth
+                    onClick={() => handleSubmit()}
+                    disabled={!isPhoneNumberConfirmed}
+                >
+                    {isLoading ? <Loader variant="dots" color="dark" /> : 'Зарегистрироваться'}
+                </Button>
+            </section>
+        )
+    },
   ).Memo;
 
 export type { RegisterFormProps };
-export { RegisterForm };
+export { RegisterForm,$scopeName };

@@ -7,9 +7,10 @@ import { createGSPFactory } from 'nextjs-effector';
 import { useEffect } from 'react';
 import { allSettled } from 'effector';
 import { $dateStore } from '@/features/auth/register/register.model';
+import {$scopeName} from "@/features/auth/register";
 
 const CustomWrapper = () => {
-  
+
   return (
     <Text mb={15} className="text-center">
       <Link href="/index2">
@@ -21,13 +22,13 @@ const CustomWrapper = () => {
 };
 
 const createGSP = createGSPFactory({
-  sharedEvents: [$$boot.started],
+  sharedEvents: [],
 });
 
 export const getStaticProps = createGSP({
   pageEvent: $$registerPage.enter,
-  customize: async ({scope, context}) => { 
-    await allSettled($dateStore, {scope, params: Date.now()})
+  customize: async ({scope, context}) => {
+      await allSettled($scopeName,{scope,params: Math.random().toString()})
     return {
       props: {}
     }

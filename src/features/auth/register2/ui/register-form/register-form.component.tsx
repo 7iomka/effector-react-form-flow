@@ -25,11 +25,14 @@ import {
   formPhone,
   formPhoneConfirm,
 } from '../../register.model';
+
 import styles from './register-form.module.scss';
 
 interface RegisterFormProps {
   className?: string;
 }
+
+
 const FormPhone = createView()
   .units({
     isLoading: $formPhonePending,
@@ -42,6 +45,7 @@ const FormPhone = createView()
       form: formPhone,
       resetUnmount: false,
     });
+
 
     return {
       form: formPhone,
@@ -209,7 +213,6 @@ const RegisterForm = createView<RegisterFormProps>()
     isPhoneNumberConfirmed: $isPhoneNumberConfirmed,
   })
   .effect(({ isConfirmationCodeEnabled }) => {
-    console.log('isConfirmationCodeEnabled in component', isConfirmationCodeEnabled);
     // reset all
     // useEffect(
     //   () => () => {

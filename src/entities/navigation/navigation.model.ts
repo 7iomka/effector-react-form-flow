@@ -90,6 +90,5 @@ export const setQueryFx = attach({
       },
     );
 
-    console.log('router to push from set query', { query, newQuery });
   },
 });
