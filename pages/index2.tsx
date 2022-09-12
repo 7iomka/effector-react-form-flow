@@ -4,6 +4,7 @@ import { $$register2Page, Register2 } from '@/pages/public/auth/register2';
 import { Text } from '@mantine/core';
 import Link from 'next/link';
 import { createGSPFactory } from 'nextjs-effector';
+import { createGSSPFactory } from 'nextjs-effector';
 
 const CustomWrapper = () => (
   <Text mb={15} className="text-center">
@@ -14,11 +15,11 @@ const CustomWrapper = () => (
   </Text>
 );
 
-const createGSP = createGSPFactory({
+const createGSSP = createGSSPFactory({
   sharedEvents: [$$boot.started],
 });
 
-export const getStaticProps = createGSP({
+export const getSeverSideProps = createGSSP({
   pageEvent: $$register2Page.enter,
 });
 
