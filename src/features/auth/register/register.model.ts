@@ -8,6 +8,7 @@ import { createForm } from '@/shared/lib/effector-react-form';
 import type { SubmitParams, ErrorsInline } from '@/shared/lib/effector-react-form';
 import { createValidator } from '@/shared/form';
 import { ObjectShape } from 'yup/lib/object';
+import { debug } from 'patronum';
 
 export const sleep = (ms: number = 700) => new Promise((resolve) => setTimeout(resolve, ms));
 
@@ -384,3 +385,14 @@ reset({
     $mode,
   ],
 });
+
+
+export const $dateStore = createStore('');
+
+// sample({
+//   clock: formPhone.$values,
+//   fn: () => String(Date.now()),
+//   target: $dateStore
+// })
+
+debug($dateStore)

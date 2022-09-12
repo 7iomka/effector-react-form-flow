@@ -5,7 +5,7 @@ import { useForm } from '@/shared/lib/effector-react-form';
 import { createView } from '@/shared/lib/view';
 import { Field, Form } from '@/shared/form';
 
-import { allResetted, FormPhoneConfirmDto, FormPhoneDto } from '../../register.model';
+import { $dateStore, FormPhoneConfirmDto, FormPhoneDto } from '../../register.model';
 import {
   $confirmationModeInfo,
   $confirmationModes,
@@ -26,6 +26,7 @@ import {
   formPhoneConfirm,
 } from '../../register.model';
 import styles from './register-form.module.scss';
+import { useEffect } from 'react';
 
 interface RegisterFormProps {
   className?: string;
@@ -207,9 +208,15 @@ const RegisterForm = createView<RegisterFormProps>()
     handleSubmit: registerFormSubmitted,
     isConfirmationCodeEnabled: $isConfirmationCodeEnabled,
     isPhoneNumberConfirmed: $isPhoneNumberConfirmed,
-    allResetted: allResetted,
+    dateStore: $dateStore,
   })
-  .effect(({ isConfirmationCodeEnabled, allResetted }) => {
+  .effect(({ isConfirmationCodeEnabled}) => {
+    useEffect(() => {
+      console.log('mounted'); 
+      return () => {
+        console.log('unmounted');
+      }
+    }, [])
     console.log('isConfirmationCodeEnabled in component', isConfirmationCodeEnabled);
     // reset all
     // useEffect(

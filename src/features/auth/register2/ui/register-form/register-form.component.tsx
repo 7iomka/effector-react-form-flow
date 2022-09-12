@@ -207,9 +207,8 @@ const RegisterForm = createView<RegisterFormProps>()
     handleSubmit: registerFormSubmitted,
     isConfirmationCodeEnabled: $isConfirmationCodeEnabled,
     isPhoneNumberConfirmed: $isPhoneNumberConfirmed,
-    allResetted: allResetted,
   })
-  .effect(({ isConfirmationCodeEnabled, allResetted }) => {
+  .effect(({ isConfirmationCodeEnabled }) => {
     console.log('isConfirmationCodeEnabled in component', isConfirmationCodeEnabled);
     // reset all
     // useEffect(

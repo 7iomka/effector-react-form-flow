@@ -5,11 +5,11 @@ import type { StaticPageContext } from 'nextjs-effector';
 
 export const enter = createEvent<StaticPageContext>();
 
-sample({
-  clock: enter,
-  fn: () => {},
-  target: [$$register.allResetted],
-});
+// sample({
+//   clock: enter,
+//   fn: () => {},
+//   target: [$$register.allResetted], 
+// });
 
 enter.watch((v) => console.log('enter v1'));
-$$register.allResetted.watch((v) => console.log('allresetted v1'));
+// $$register.allResetted.watch((v) => console.log('allresetted v1'));
