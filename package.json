@@ -42,9 +42,9 @@
     "yup": "0.32.11"
   },
   "scripts": {
-    "dev": "next",
+    "dev": "next --port 4004",
     "build": "next build",
-    "start": "next start",
+    "start": "next start --port 4004",
     "post-update": "echo \"codesandbox preview only, need an update\" && yarn upgrade --latest"
   },
   "devDependencies": {
