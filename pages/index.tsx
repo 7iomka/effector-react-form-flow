@@ -4,9 +4,7 @@ import { $$registerPage, Register } from '@/pages/public/auth/register';
 import { Text } from '@mantine/core';
 import Link from 'next/link';
 import { createGSPFactory } from 'nextjs-effector';
-import { useEffect } from 'react';
 import { allSettled } from 'effector';
-import { $dateStore } from '@/features/auth/register/register.model';
 import {$scopeName} from "@/features/auth/register";
 
 const CustomWrapper = () => {
