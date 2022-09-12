@@ -3,7 +3,7 @@ import { $$boot } from '@/processes/boot';
 import { $$registerPage, Register } from '@/pages/public/auth/register';
 import { Text } from '@mantine/core';
 import Link from 'next/link';
-import { createGSPFactory } from 'nextjs-effector';
+import { createGSPFactory, createGSSPFactory } from 'nextjs-effector';
 import { useEffect } from 'react';
 import { allSettled } from 'effector';
 import { $dateStore } from '@/features/auth/register/register.model';
@@ -20,11 +20,11 @@ const CustomWrapper = () => {
   )
 };
 
-const createGSP = createGSPFactory({
+const createGSSP = createGSSPFactory({
   sharedEvents: [$$boot.started],
 });
 
-export const getStaticProps = createGSP({
+export const getServerSideProps = createGSSP({
   pageEvent: $$registerPage.enter,
   customize: async ({scope, context}) => { 
     await allSettled($dateStore, {scope, params: Date.now()})

@@ -1,6 +1,7 @@
 import { createEvent } from 'effector';
 import type { StaticPageContext } from 'nextjs-effector';
+import { PageContext } from 'nextjs-effector';
 
-const enter = createEvent<StaticPageContext>();
+const enter = createEvent<PageContext>();
 
 export { enter };

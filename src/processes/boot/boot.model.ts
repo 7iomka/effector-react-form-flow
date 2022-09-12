@@ -1,8 +1,9 @@
 import { createEvent, createStore, sample } from "effector";
 import type { StaticPageContext } from "nextjs-effector";
+import { PageContext } from "nextjs-effector";
 // import { $$sitemap } from '@/entities/sitemap';
 
-const started = createEvent<StaticPageContext>();
+const started = createEvent<PageContext>();
 // const startedOnServer = createEvent<ServerPageContext>();
 // const cookiesReady = createEvent();
 
