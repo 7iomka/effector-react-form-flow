@@ -6,16 +6,38 @@ import Link from 'next/link';
 import { createGSPFactory } from 'nextjs-effector';
 import { allSettled } from 'effector';
 import {$scopeName} from "@/features/auth/register";
+import { ProductCarousel } from '@/widgets/product/product-carousel';
 
 const CustomWrapper = () => {
 
   return (
-    <Text mb={15} className="text-center">
-      <Link href="/index2">
-        <a style={{ textDecoration: 'underline' }}>Form 2</a>
-      </Link>
-      <Register />
-    </Text>
+     <div className="container">
+        <div className="row gy-12">
+          <div className="col-12 md:col-6 xxl:col-5">
+            <ProductCarousel items={[
+                {
+                src: '/static/images/content/products/1/1_1.jpg',
+                },
+                {
+                src: '/static/images/content/products/1/1_2.jpg',
+                },
+                {
+                src: '/static/images/content/products/1/1_3.jpg',
+                },
+                {
+                src: '/static/images/content/products/1/1_4.jpg',
+                },
+                {
+                src: '/static/images/content/products/1/1_5.jpg',
+                },
+                {
+                src: '/static/images/content/products/1/1_6.jpg',
+                },
+            ]} className="mt-14 md:mt-0" /> 
+          </div>
+          <div className="col-12 md:col-6 xxl:col-7"> product details</div>
+        </div>
+    </div>
   )
 };
 

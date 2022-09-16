@@ -47,6 +47,7 @@ export function useScope(values: Values = {}) {
     const currentValues = serialize(state.clientScope);
     const nextValues = Object.assign({}, currentValues, values);
     const nextScope = fork({ values: nextValues });
+    
 
     state.clientScope = nextScope;
     valuesRef.current = values;
@@ -70,6 +71,7 @@ export function withEffector(
 
 
     const scope = useScope(initialState);
+    console.log({initialState})
 
     if(prevScope){
 
