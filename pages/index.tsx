@@ -1,36 +1,31 @@
 // import { baseLayout } from '@/app/page-factories';
-import { $$boot } from '@/processes/boot';
-import { $$registerPage, Register } from '@/pages/public/auth/register';
-import { Text } from '@mantine/core';
-import Link from 'next/link';
-import { createGSPFactory } from 'nextjs-effector';
-import { allSettled } from 'effector';
-import {$scopeName} from "@/features/auth/register";
+import { Text, Tooltip } from "@mantine/core";
 
 const CustomWrapper = () => {
-
   return (
     <Text mb={15} className="text-center">
-      <Link href="/index2">
-        <a style={{ textDecoration: 'underline' }}>Form 2</a>
-      </Link>
-      <Register />
+      <div
+        className="mx-auto px-4 md:px-8 max-w-screen-xl"
+        style={{ maxWidth: "400px" }}
+      >
+        <div className="prose text-xl lg:text-2xl text-left">
+          Floating UI is a low-level toolkit to create{" "}
+          <Tooltip
+            label="Floating element is one that floats on top of the UI without disrupting the flow of content, like this one!"
+            color="blue"
+            withArrow
+            width={450}
+            multiline
+          >
+            <span tabIndex={0} className="relative underline">
+              floating elements
+            </span>
+          </Tooltip>
+          . Tooltips, popovers, dropdowns, menus, and more.
+        </div>
+      </div>
     </Text>
-  )
+  );
 };
-
-const createGSP = createGSPFactory({
-  sharedEvents: [],
-});
-
-export const getStaticProps = createGSP({
-  pageEvent: $$registerPage.enter,
-  customize: async ({scope, context}) => {
-      await allSettled($scopeName,{scope,params: Math.random().toString()})
-    return {
-      props: {}
-    }
-  }
-});
 
 export default CustomWrapper;
